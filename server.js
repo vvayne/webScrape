@@ -683,13 +683,13 @@ app.get('/scrape', function(req, res){
 'CHGG',
 'ZU',
 'WBAI',
-'ATHM',
-  ]
+'ATHM',]
 
   for( i = 0; i<tickerSymbol.length; i++){
     var selectedTicker = tickerSymbol[i];
 
-  url = "http://www.sec.gov/cgi-bin/browse-edgar?CIK="+selectedTicker+"&Find=Search&owner=exclude&action=getcompany"
+    // json.symbol = selectedTicker;
+  url = "http://www.sec.gov/cgi-bin/browse-edgar?CIK="+selectedTicker+"&Find=Search&owner=exclude&action=getcompany";
   request(url, function(error,response,html){
 
     if(!error){
@@ -715,21 +715,21 @@ app.get('/scrape', function(req, res){
     })
 
 
-fs.appendFile('locations3.json',JSON.stringify(json,null,4),function(err) {
+fs.appendFile('workingFinal.json',JSON.stringify(json,null,4),function(err) {
   if(err) throw err;
 })
 
 }
 
 })
+setTimeout(function(){
+},4000)
 
- }
+}
  console.log('File Successfully Written');
     res.send('check your console')
   });
 
-app.listen('8081')
-
-console.log('Magic happens on port 8081');
+app.listen('8000')
 
 exports = module.exports = app;
